@@ -1,7 +1,7 @@
 nebula:
   userName: root
   password: nebula
-  hostAddresses[0]: ip:9669
+  hostAddresses[0]: 10.0.59.65:9669
   minConnsSize: 5
   maxConnSize: 10
   timeout: 300000
