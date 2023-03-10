@@ -1,8 +1,8 @@
 本项目集成了swagger启动项目后访问地址即可看到所有接口 
 
 http://localhost:8080/swagger-ui/index.html#/
-效果图 https://gitee.com/flgitee/nebula-swagger-demo/blob/master/1654158923598.jpg
 
+![效果图](1654158923598.jpg)
 
 2023-03-06 升级一版
 升级内容: 
