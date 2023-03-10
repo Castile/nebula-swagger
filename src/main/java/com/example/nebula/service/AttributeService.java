@@ -40,18 +40,9 @@ public class AttributeService {
         List<AttributeVo> list = graphCommonService.executeJson(NebulaUtil.showAttributes(graphShowAttribute), AttributeVo.class);
         if (CollUtil.isNotEmpty(list)) {
             if (AttributeEnum.TAGS.name().equalsIgnoreCase(graphShowAttribute.getAttribute())) {
-                //List<GraphTag> graphTagList = graphTagService.queryBySpace(graphShowAttribute.getSpace());
-                //if (CollUtil.isNotEmpty(graphTagList)) {
-                //    Map<String, GraphTag> tagMap = graphTagList.stream().collect(Collectors.toMap(GraphTag::getTagName, Function.identity()));
                 list.forEach(attributeVo -> {
                     attributeVo.getData().forEach(dataBean -> {
                         String tag = dataBean.getRow().get(0);
-                        //GraphTag graphTag = tagMap.get(tag);
-                        //if (ObjectUtil.isNotNull(graphTag)) {
-                        //    dataBean.getRow().add(graphTag.getColor());
-                        //} else {
-                        //    dataBean.getRow().add("");
-                        //}
                         GraphShowInfo graphShowInfo = GraphShowInfo.builder().space(graphShowAttribute.getSpace())
                                 .attribute("tag").attributeName(tag).build();
                         List<AttributeVo> attributeVoList = graphCommonService.executeJson(NebulaUtil.showAttributeInfo(graphShowInfo), AttributeVo.class);
@@ -162,8 +153,6 @@ public class AttributeService {
         attributeVo.setFieldMap(stringListHashMap);
     }
 
-
-
     public List<AttributeVo> showCreateAttributeInfo(GraphShowInfo graphShowInfo) {
         List<AttributeVo> attributeVoList = graphCommonService.executeJson(NebulaUtil.showCreateAttributeInfo(graphShowInfo), AttributeVo.class);
         if (CollUtil.isNotEmpty(attributeVoList)) {
@@ -183,18 +172,6 @@ public class AttributeService {
                             datum.getRow().add("");
                         }
                     }
-                    //List<GraphTag> graphTagList = graphTagService.queryBySpace(graphShowInfo.getSpace());
-                    //if (CollUtil.isNotEmpty(graphTagList)) {
-                    //    attributeVo.getColumns().add("color");
-                    //    Map<String, GraphTag> tagMap = graphTagList.stream().collect(Collectors.toMap(GraphTag::getTagName, Function.identity()));
-                    //    String tagName = datum.getRow().get(0);
-                        //GraphTag graphTag = tagMap.get(tagName);
-                        //if (ObjectUtil.isNotNull(graphTag)) {
-                        //    datum.getRow().add(graphTag.getColor());
-                        //} else {
-                        //    datum.getRow().add("");
-                        //}
-                    //}
                 }
             }
         }

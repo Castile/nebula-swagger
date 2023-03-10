@@ -30,25 +30,6 @@ public class VertexService {
     GraphCommonService graphCommonService;
 
     public List<NebulaVertexJsonResult> vertexList(String space) {
-
-        // 查询当前的所有tag
-        //List<String> tagList = CollectionUtil.newArrayList();
-        //GraphShowAttribute graphShowAttribute = new GraphShowAttribute(space, AttributeEnum.TAGS.name());
-        //List<AttributeVo> list = graphCommonService.executeJson(NebulaUtil.showAttributes(graphShowAttribute), AttributeVo.class);
-        //AttributeVo attributeVo = list.get(0);
-        //List<AttributeVo.DataBean> data = attributeVo.getData();
-        //if (CollectionUtil.isNotEmpty(data)) {
-        //    for (AttributeVo.DataBean datum : data) {
-        //        String tag = datum.getRow().get(0);
-        //        tagList.add(tag);
-        //    }
-        //}
-        //log.info("查询到的所有tag: {}", JSONUtil.toJsonPrettyStr(tagList));
-        //if (CollectionUtil.isEmpty(tagList)) {
-        //    return CollectionUtil.newArrayList();
-        //}
-        //return graphCommonService.executeJson(NebulaUtil.queryMatch(tagList,space), NebulaVertexJsonResult.class);
-
         return graphCommonService.executeJson(NebulaUtil.queryMatch(space), NebulaVertexJsonResult.class);
     }
 

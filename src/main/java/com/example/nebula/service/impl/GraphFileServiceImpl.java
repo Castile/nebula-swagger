@@ -88,11 +88,9 @@ public class GraphFileServiceImpl implements GraphFileService {
         File file = new File(uploadFilePath, fileName);
         try {
             multipartFile.transferTo(file);
-            //FileUtil.convertCharset(file, CharsetUtil.defaultCharset(), CharsetUtil.CHARSET_UTF_8);
         } catch (IOException e) {
             throw new GraphExecuteException("文件读写异常");
         }
-
 
         GraphFile graphFile = new GraphFile();
         graphFile.setUserId(userId);
@@ -101,32 +99,10 @@ public class GraphFileServiceImpl implements GraphFileService {
         graphFile.setFileSize(file.length() + "B");
         graphFile.setCreatedTime(DateUtil.date());
 
-        //GraphFile result = this.graphFileDao.queryByFileName(fileName, userId);
-        ////判断是否有同名文件
-        //if (Objects.isNull(result)) {
-        //    //若没有，插入数据
-        //    this.graphFileDao.insert(graphFile);
-        //} else {
-        //    //若有，更新
-        //    graphFile.setId(result.getId());
-        //    this.graphFileDao.update(graphFile);
-        //    List<Integer> ids = new ArrayList<>();
-        //    ids.add(result.getId());
-        //    this.graphFilePreviewService.deleteByFileIds(ids);
-        //}
-
         //从文件中读取CSV数据
         CsvReader reader = CsvUtil.getReader();
         CsvData data = reader.read(file, StandardCharsets.UTF_8);
         List<CsvRow> rows = data.getRows();
-        //List<GraphFilePreview> list = new ArrayList<>();
-        //int min = Math.min(rows.size(), 5);
-        //for (int i = 0; i < min; i++) {
-        //    GraphFilePreview graphFilePreview = new GraphFilePreview(graphFile.getId(),
-        //        JSONUtil.toJsonStr(rows.get(i).getRawList()), DateUtil.date());
-        //    list.add(graphFilePreview);
-        //}
-        //this.graphFilePreviewService.insertBatch(list);
         return graphFile;
     }
 
@@ -171,11 +147,7 @@ public class GraphFileServiceImpl implements GraphFileService {
         if (!FileUtil.exist(new File(logFile))) {
             return false;
         }
-        //GraphLog graphLog = new GraphLog();
-        //Integer userId = Integer.parseInt(String.valueOf(StpUtil.getLoginId()));
-        //graphLog.setUserId(userId);
-        //graphLog.setSpaceName(importBean.getSpace());
-        //graphLog.setImportTime((end - start) + "ms");
+
         // 执行日志内容
         BufferedReader br = new BufferedReader(new InputStreamReader(Files.newInputStream(Paths.get(logFile)), StandardCharsets.UTF_8));
         String line;
@@ -183,11 +155,6 @@ public class GraphFileServiceImpl implements GraphFileService {
         while ((line = br.readLine()) != null) {
             content.append(line).append("\n");
         }
-        //graphLog.setContent(content.toString());
-        //graphLog.setTask("task-" + randomString);
-        //graphLog.setCreateTime(DateUtil.date());
-        //this.graphLogService.insert(graphLog);
-
         return true;
     }
 
@@ -228,7 +195,6 @@ public class GraphFileServiceImpl implements GraphFileService {
                 graphShowInfo.setAttribute("tag");
                 List<AttributeVo> attributeVoList = graphCommonService.executeJson(NebulaUtil.showAttributeInfo(graphShowInfo), AttributeVo.class);
                 List<String> rows = CollectionUtil.newArrayList();
-                //attributeVoList.forEach(attributeVo1 -> attributeVo1.getData().forEach(dataBean -> rows.add(dataBean.getRow().get(0))));
                 rows.add(VID);
                 attributeVoList.forEach(attributeVo1 -> attributeVo1.getData().forEach(dataBean -> {
                     String type = "int64".equalsIgnoreCase(dataBean.getRow().get(1)) ? "int" : dataBean.getRow().get(1);
@@ -246,9 +212,6 @@ public class GraphFileServiceImpl implements GraphFileService {
                 graphShowInfo.setAttribute("edge");
                 List<AttributeVo> attributeVoList = graphCommonService.executeJson(NebulaUtil.showAttributeInfo(graphShowInfo), AttributeVo.class);
                 List<String> rows = CollectionUtil.newArrayList();
-                //rows.add("srcId");
-                //rows.add("dstId");
-                //attributeVoList.forEach(attributeVo1 -> attributeVo1.getData().forEach(dataBean -> rows.add(dataBean.getRow().get(0))));
                 rows.add(SRC_VID);
                 rows.add(DST_VID);
                 attributeVoList.forEach(attributeVo1 -> attributeVo1.getData().forEach(dataBean -> {
@@ -313,13 +276,10 @@ public class GraphFileServiceImpl implements GraphFileService {
     private void getVertex(ImportBean importBean, List<TemplateBean.File> fileList) {
         for (VertexCombo vertexCombo : importBean.getVertices()) {
             TemplateBean.File file = new TemplateBean.File();
-            //GraphFile graphFile = this.graphFileDao.queryById(vertexCombo.getFileId());
             String failDataPath = filePath + "/failDataFile";
             makeDir(failDataPath);
             String randomString = RandomUtil.randomString(6);
             file.setFailDataPath(String.format("%s/%s-%s", failDataPath, randomString, "DEMO"));
-            //file.setFailDataPath(String.format("%s/%s-%s", failDataPath, randomString, graphFile.getFileName()));
-            //file.setPath(graphFile.getFilePath());
             file.setPath("DEMO");
             file.setCsv(new TemplateBean.CSV());
 
@@ -333,13 +293,10 @@ public class GraphFileServiceImpl implements GraphFileService {
     private void getEdge(ImportBean importBean, List<TemplateBean.File> fileList) {
         for (EdgeCombo edgeCombo : importBean.getEdges()) {
             TemplateBean.File file = new TemplateBean.File();
-            //GraphFile graphFile = this.graphFileDao.queryById(edgeCombo.getFileId());
             String failDataPath = filePath + "/failDataFile";
             makeDir(failDataPath);
             String randomString = RandomUtil.randomString(6);
             file.setFailDataPath(String.format("%s/%s-%s", failDataPath, randomString, "demo"));
-            //file.setFailDataPath(String.format("%s/%s-%s", failDataPath, randomString, graphFile.getFileName()));
-            //file.setPath(graphFile.getFilePath());
             file.setPath("demo");
             file.setCsv(new TemplateBean.CSV());
 
@@ -355,24 +312,11 @@ public class GraphFileServiceImpl implements GraphFileService {
 //            TemplateBean.SrcDst dst = new TemplateBean.SrcDst();
 //            dst.setIndex(edgeElement.getDstId());
 //            edge.setDstVID(dst);
-////            edge.setRank(edgeElement.getRank());
+//            edge.setRank(edgeElement.getRank());
 //            edge.setProps(getPropList(edgeElement.getProperties()));
             schema.setEdge(edge);
             file.setSchema(schema);
             fileList.add(file);
         }
     }
-
-//    private List<TemplateBean.Prop> getPropList(List<Property> properties) {
-//        List<TemplateBean.Prop> propList = new ArrayList<>();
-//        for (Property property : properties) {
-//            TemplateBean.Prop prop = new TemplateBean.Prop();
-//            prop.setName(property.getPropName());
-//            prop.setIndex(property.getCsvIndex());
-//            String type = "int64".equals(property.getType()) ? "int" : property.getType();
-//            prop.setType(type);
-//            propList.add(prop);
-//        }
-//        return propList;
-//    }
 }

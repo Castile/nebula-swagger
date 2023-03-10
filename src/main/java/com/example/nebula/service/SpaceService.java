@@ -25,28 +25,7 @@ public class SpaceService {
     GraphCommonService graphCommonService;
 
     public List<CommonVo> createSpace(GraphCreateSpace graphCreateSpace) {
-        //GraphSpace bean = graphSpaceService.queryByChineseName(graphCreateSpace.getSpaceChineseName());
-        //if (ObjectUtil.isNotNull(bean)) {
-        //    throw new GraphExecuteException("图谱中文名重复");
-        //}
-        //GraphSpace graphSpace1 = graphSpaceService.queryByName(graphCreateSpace.getSpace());
-        //if (ObjectUtil.isNotNull(graphSpace1)) {
-        //    throw new GraphExecuteException("图谱标识重复");
-        //}
         List list = graphCommonService.executeJson(NebulaUtil.createSpace(graphCreateSpace), CommonVo.class);
-        //GraphSpace graphSpace = new GraphSpace();
-        //graphSpace.setSpaceName(graphCreateSpace.getSpace());
-        //graphSpace.setSpaceChineseName(graphCreateSpace.getSpaceChineseName());
-        //graphSpace.setCreateTime(String.valueOf(DateUtil.date()));
-        //graphSpace.setCreateUser(StpUtil.getLoginIdAsLong());
-        //graphSpace.setVidType(graphCreateSpace.getFixedType() + graphCreateSpace.getSize());
-        //graphSpace.setRemark(graphCreateSpace.getComment());
-        //graphSpace.setReplicaFactor(graphCreateSpace.getReplicaFactor());
-        //graphSpace.setPartitionNum(graphCreateSpace.getPartitionNum());
-        //graphSpace.setTypeCode(graphCreateSpace.getTypeCode());
-        //graphSpace.setClassifyCode(ClassifyCodeEnum.NEW.name());
-        //graphSpaceService.insert(graphSpace);
-        ////log.info("图空间mysql保存成功: {}", JSONUtil.toJsonPrettyStr(graphSpace));
         return list;
     }
 
