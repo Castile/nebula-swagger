@@ -13,8 +13,8 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * @Descriptin: swagger配置
- * @ClassName: SwaggerConfig
+ * swagger配置
+ * @author fulin
  */
 @Configuration
 @EnableOpenApi
@@ -23,15 +23,15 @@ public class SwaggerConfig implements WebMvcConfigurer {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.OAS_30)
-            .apiInfo(apiInfo()).select()
-            .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-            .paths(PathSelectors.any())
-            .build();
+                .apiInfo(apiInfo()).select()
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .paths(PathSelectors.any())
+                .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .build();
+                .build();
     }
 
 }

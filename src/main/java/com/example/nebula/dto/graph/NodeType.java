@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * 图可视化-展示样式
  *
- * @author juwentao
- * @date 2022/5/9 15:44
+ * @author fulin
+ * @since 2022/5/9 15:44
  */
 @Data
 @Builder

@@ -3,10 +3,15 @@ package com.example.nebula.constant;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * @author fulin
+ */
+
 @AllArgsConstructor
 @Getter
 public enum ConditionEnum {
 
+    // 比较判断
     相等("EQUAL", "=="),
     包含("CONTAINS", "CONTAINS"),
     开始("STARTS", "STARTS WITH"),

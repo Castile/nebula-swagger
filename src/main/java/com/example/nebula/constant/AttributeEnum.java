@@ -4,6 +4,7 @@ import lombok.Getter;
 
 /**
  * 属性枚举
+ * @author fulin
  */
 @Getter
 public enum AttributeEnum {

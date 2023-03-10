@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * @Descriptin: 点类型标签tag控制器
- * @ClassName: TagController
+ * @author fulin
+ * 点类型标签tag控制器
  */
 @RestController
 @Api(tags = "标签tag edge 新增控制器")

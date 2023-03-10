@@ -19,8 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Descriptin: 点控制器
- * @ClassName: VertexController
+ * 点控制器
+ *
+ * @author fulin
  */
 @RestController
 @Api(tags = "点查询(实体)控制器")

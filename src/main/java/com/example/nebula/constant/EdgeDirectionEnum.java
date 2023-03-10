@@ -7,11 +7,15 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * @author fulin
+ */
+
 @Getter
 @AllArgsConstructor
 public enum EdgeDirectionEnum {
 
-
+    // 边方向
     流出("OUTFLOW", "", ">","OUT"),
     流入("INFLOW", "<", "","IN"),
     双向("TWO-WAY", "", "","BOTH");

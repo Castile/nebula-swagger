@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author fulin
+ */
 @RestController
 @RequestMapping("/attribute")
 @Api(tags = "属性编辑控制器")

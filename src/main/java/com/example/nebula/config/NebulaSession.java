@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description 配置全局唯一session链接
+ * @author fulin
+ * 配置全局唯一session链接
  **/
 @Component
 public class NebulaSession {

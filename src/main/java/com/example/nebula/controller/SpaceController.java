@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @Descriptin: space控制器
- * @ClassName: SpaceController
+ * @author fulin
+ * space控制器
  */
 @RestController
 @Api(tags = "图谱space控制器")
@@ -57,9 +57,6 @@ public class SpaceController {
     public R spaceInfo(@RequestBody GraphSpace graphSpace) {
         return R.data(spaceService.spaceInfo(graphSpace.getSpace()));
     }
-
-
-
 
 
 }

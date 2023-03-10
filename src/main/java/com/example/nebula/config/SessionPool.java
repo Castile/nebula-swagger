@@ -19,7 +19,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 
 /**
- * @ClassName: SessionPool
+ * @author fulin
+ * SessionPool
  */
 @Slf4j
 public class SessionPool {

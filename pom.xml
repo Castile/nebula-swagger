@@ -32,7 +32,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -87,7 +86,6 @@
         </dependency>
 
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/**
+ * @author fulin
+ */
 @Configuration
 @ConfigurationProperties(prefix = "nebula")
 @EnableConfigurationProperties(NebulaGraphProperties.class)
