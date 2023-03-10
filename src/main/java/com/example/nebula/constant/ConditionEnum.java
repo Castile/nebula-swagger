@@ -7,7 +7,6 @@ import lombok.Getter;
 @Getter
 public enum ConditionEnum {
 
-
     相等("EQUAL", "=="),
     包含("CONTAINS", "CONTAINS"),
     开始("STARTS", "STARTS WITH"),

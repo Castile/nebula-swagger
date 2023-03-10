@@ -143,7 +143,7 @@ public class NebulaUtil {
         }
 
         String createPoint = String.format("USE `%s`;INSERT VERTEX IF NOT EXISTS `%s`(%s) VALUES %s: (" + bufferString + ");"
-                , graphCreateVertex.getSpace(), graphCreateVertex.getTagName(), stringBufferTagList.toString(),
+                , graphCreateVertex.getSpace(), graphCreateVertex.getTagName(), stringBufferTagList,
                 pointKey);
         log.info("创建vertex-gql语句:{}", createPoint);
         return createPoint;
@@ -205,7 +205,7 @@ public class NebulaUtil {
 
         String delAttributeProperty = String.format("USE `%s`; ALTER %s `%s` DROP (%s);"
                 , graphDelAttribute.getSpace(), graphDelAttribute.getAttribute(),
-                graphDelAttribute.getAttributeName(), stringBuffer.toString());
+                graphDelAttribute.getAttributeName(), stringBuffer);
         log.info("删除某个属性的 子属性 -gql语句:{}", delAttributeProperty);
         return delAttributeProperty;
     }
@@ -334,7 +334,7 @@ public class NebulaUtil {
             for (int i = 0; i < edgeValueList.size(); i++) {
                 Object value = edgeValueList.get(i);
                 if (value instanceof String) {
-                    stringBuffer.append("'" + StringEscapeUtils.unescapeHtml((String) value) + "'");
+                    stringBuffer.append("'").append(StringEscapeUtils.unescapeHtml((String) value)).append("'");
                 } else {
                     stringBuffer.append(value);
                 }
@@ -591,9 +591,8 @@ public class NebulaUtil {
             pointKey = "'" + pointKey.toString() + "'";
         }
 
-
         String updateVertex = String.format("USE `%s`; UPDATE VERTEX ON `%s` %s  SET %s;"
-                , graphUpdateVertex.getSpace(), graphUpdateVertex.getTagName(), pointKey, stringBuffer.toString());
+                , graphUpdateVertex.getSpace(), graphUpdateVertex.getTagName(), pointKey, stringBuffer);
         log.info("修改点 -gql语句:{}", updateVertex);
         return updateVertex;
     }
@@ -671,7 +670,7 @@ public class NebulaUtil {
 
         String updateVertex = String.format("USE `%s`; UPDATE EDGE ON `%s` %s -> %s@0 SET %s;"
                 , graphUpdateEdge.getSpace(), graphUpdateEdge.getEdgeName(), srcVid, dstVid
-                , stringBuffer.toString());
+                , stringBuffer);
         log.info("关系编辑 -gql语句:{}", updateVertex);
         return updateVertex;
     }
@@ -881,7 +880,7 @@ public class NebulaUtil {
         }
         log.info(stringBuffer.toString());
         String commonNeighbor = String.format("USE `%s`; (GO FROM '%s' OVER *  YIELD dst(edge) as id  %s UNION GO FROM '%s' OVER * REVERSELY YIELD src(edge) as id)",
-                space, ids.get(0), stringBuffer.toString(), ids.get(ids.size() - 1));
+                space, ids.get(0), stringBuffer, ids.get(ids.size() - 1));
         log.info("共同邻居 -gql语句:{}", commonNeighbor);
         return commonNeighbor;
     }

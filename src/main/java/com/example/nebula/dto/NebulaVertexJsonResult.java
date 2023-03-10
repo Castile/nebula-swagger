@@ -1,6 +1,5 @@
 package com.example.nebula.dto;
 
-import com.alibaba.fastjson.JSONArray;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.swagger.annotations.ApiModel;

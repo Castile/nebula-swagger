@@ -1,8 +1,6 @@
 package com.example.nebula.service;
 
-
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
@@ -17,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +28,6 @@ public class VertexService {
 
     @Autowired
     GraphCommonService graphCommonService;
-
 
     public List<NebulaVertexJsonResult> vertexList(String space) {
 
@@ -55,7 +51,6 @@ public class VertexService {
 
         return graphCommonService.executeJson(NebulaUtil.queryMatch(space), NebulaVertexJsonResult.class);
     }
-
 
     public List<NebulaVertexJsonResult> vertexExpandQuery(GraphExpand graphExpand) {
         String vidType = graphCommonService.getVidType(graphExpand.getSpace());

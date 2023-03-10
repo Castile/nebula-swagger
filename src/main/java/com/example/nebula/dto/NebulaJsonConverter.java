@@ -3,7 +3,6 @@ package com.example.nebula.dto;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.nebula.constant.GqlConstant;
@@ -25,7 +24,6 @@ import java.util.Set;
 public class NebulaJsonConverter {
 
     /**
-     *
      * @param jsonArray
      * @param attributeVos
      * @return
@@ -80,8 +78,13 @@ public class NebulaJsonConverter {
                             if (ObjectUtil.notEqual(GqlConstant.UNKNOWN, tag)) {
                                 nodeTypes = tag;
                             }
-                            nodes.add(GraphNode.builder().id(oneMeta.getString("id")).tag(tag).label(name).nodeTypes(nodeTypes).tagInfo(tagInfo).build());
-
+                            nodes.add(GraphNode.builder()
+                                    .id(oneMeta.getString("id"))
+                                    .tag(tag)
+                                    .label(name)
+                                    .nodeTypes(nodeTypes)
+                                    .tagInfo(tagInfo)
+                                    .build());
 
                             HashMap<String, String> colorMap = MapUtil.newHashMap();
                             colorMap.put("fill", color);
@@ -101,10 +104,16 @@ public class NebulaJsonConverter {
                             //}
 
                             if (!tagSet.contains(tag)) {
-                                nodeTypeList.add(NodeType.builder().id(oneMeta.getString("id")).label(tag).style(colorMap).build());
+                                nodeTypeList.add(
+                                        NodeType
+                                                .builder()
+                                                .id(oneMeta.getString("id"))
+                                                .label(tag)
+                                                .style(colorMap)
+                                                .build()
+                                );
                             }
                             tagSet.add(tag);
-
                             break;
                         case "edge":
                             final JSONObject id = oneMeta.getJSONObject("id");
@@ -113,20 +122,23 @@ public class NebulaJsonConverter {
                             if (typeFX > 0) {
                                 edges.add(
                                         GraphEdge.builder()
-                                                .source(id.getString("src")).target(id.getString("dst"))
-                                                .label(id.getString("name")).edgeInfo(edgeInfo)
+                                                .source(id.getString("src"))
+                                                .target(id.getString("dst"))
+                                                .label(id.getString("name"))
+                                                .edgeInfo(edgeInfo)
                                                 .build()
                                 );
                             }
                             if (typeFX < 0) {
                                 edges.add(
                                         GraphEdge.builder()
-                                                .source(id.getString("dst")).target(id.getString("src"))
-                                                .label(id.getString("name")).edgeInfo(edgeInfo)
+                                                .source(id.getString("dst"))
+                                                .target(id.getString("src"))
+                                                .label(id.getString("name"))
+                                                .edgeInfo(edgeInfo)
                                                 .build()
                                 );
                             }
-
                             break;
                         default:
                             throw new RuntimeException("type not found");
@@ -134,7 +146,11 @@ public class NebulaJsonConverter {
                 }
             }
         }
-        return GraphData.builder().nodes(nodes).edges(edges).NodeTypes(nodeTypeList).build();
+        return GraphData.builder()
+                .nodes(nodes)
+                .edges(edges)
+                .NodeTypes(nodeTypeList)
+                .build();
     }
 }
 

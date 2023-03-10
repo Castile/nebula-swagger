@@ -38,10 +38,6 @@ public class GraphCommonService {
                 throw new GraphExecuteException("execute gql error, gql: " + gql +
                     " ,code:" + code + ", message:" + error0.getString("message"));
             }
-            //return GraphVo.builder()
-            //    .execGql(gql)
-            //    .results(JSONUtil.toList(JSONUtil.parseArray(jsonObject.get("results")), voClass))
-            //    .build();
             JSONArray results = JSONUtil.parseArray(jsonObject.get("results"));
             log.info("返回结果: {}", results);
             return JSONUtil.toList(results, voClass);

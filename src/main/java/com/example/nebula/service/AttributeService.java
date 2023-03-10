@@ -20,8 +20,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * @Descriptin: 属性操作
@@ -30,10 +28,8 @@ import java.util.stream.Collectors;
 @Service
 public class AttributeService {
 
-
     @Autowired
     GraphCommonService graphCommonService;
-
 
     /**
      * @return java.util.List<com.hoteamsoft.common.vo.AttributeVo>
@@ -82,7 +78,6 @@ public class AttributeService {
         return list;
     }
 
-
     /**
      * @return java.util.List<com.hoteamsoft.common.vo.CommonVo>
      * @Description 删除属性，如果有索引，将索引也删除
@@ -94,7 +89,6 @@ public class AttributeService {
         }
         return graphCommonService.executeJson(NebulaUtil.dropAttribute(graphDropAttribute), CommonVo.class);
     }
-
 
     /**
      * @return com.github.pagehelper.PageInfo

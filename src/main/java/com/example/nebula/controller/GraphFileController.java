@@ -25,18 +25,18 @@ import java.io.IOException;
 @RequestMapping("graphFile")
 public class GraphFileController {
 
-
     @Resource
     private GraphFileService graphFileService;
 
     /**
      * 文件上传
+     *
      * @param file 文件
      * @return 文件实例对象
      */
 
     @ApiOperation("文件上传--可以不做,这里为了预览数据")
-    @PostMapping(value = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public R<GraphFile> uploadFile(@RequestParam("file") MultipartFile file) {
         return R.data(this.graphFileService.uploadFile(file));
     }
@@ -49,8 +49,8 @@ public class GraphFileController {
 
     @ApiOperation("模板下载,可以填充数据")
     @GetMapping("/template")
-    public void template(@RequestParam String space, HttpServletResponse response){
-        graphFileService.template(space,response);
+    public void template(@RequestParam String space, HttpServletResponse response) {
+        graphFileService.template(space, response);
     }
 
 }

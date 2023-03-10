@@ -26,7 +26,6 @@ public class ImportController {
     @PostMapping("/data")
     @ApiOperation("导入数据")
     public R importData(HttpServletRequest request,
-                        @PathVariable String space,
                         ImportDto importDto,
                         @RequestParam("file") MultipartFile file) {
         return R.data(spaceService.importData(request, importDto,file));

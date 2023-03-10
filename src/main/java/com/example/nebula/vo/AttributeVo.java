@@ -13,7 +13,6 @@ import java.util.Map;
 @ApiModel("属性查询返回类")
 public class AttributeVo {
 
-
     /**
      * spaceName : flceshi
      * latencyInUs : 1986

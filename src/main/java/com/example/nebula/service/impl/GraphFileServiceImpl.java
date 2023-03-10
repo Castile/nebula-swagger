@@ -34,6 +34,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,10 +56,10 @@ public class GraphFileServiceImpl implements GraphFileService {
     @Value("${path.importerPath}")
     private String importerPath;
 
-    private static String demoName = "示例导入.zip";
-    private static String VID = ":VID(string)";
-    private static String SRC_VID = ":SRC_VID(string)";
-    private static String DST_VID = ":DST_VID(string)";
+    private static final String demoName = "示例导入.zip";
+    private static final String VID = ":VID(string)";
+    private static final String SRC_VID = ":SRC_VID(string)";
+    private static final String DST_VID = ":DST_VID(string)";
 
     /**
      * 上传文件
@@ -66,7 +68,7 @@ public class GraphFileServiceImpl implements GraphFileService {
      * @return 实例对象
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public GraphFile uploadFile(MultipartFile multipartFile) {
         if (multipartFile.isEmpty()) {
             throw new GraphExecuteException("文件为空");
@@ -74,7 +76,7 @@ public class GraphFileServiceImpl implements GraphFileService {
 
         String fileName = multipartFile.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
-        if (!suffix.equalsIgnoreCase("csv")) {
+        if (!"csv".equalsIgnoreCase(suffix)) {
             throw new GraphExecuteException("文件格式不支持");
         }
 
@@ -175,7 +177,7 @@ public class GraphFileServiceImpl implements GraphFileService {
         //graphLog.setSpaceName(importBean.getSpace());
         //graphLog.setImportTime((end - start) + "ms");
         // 执行日志内容
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(logFile), StandardCharsets.UTF_8));
+        BufferedReader br = new BufferedReader(new InputStreamReader(Files.newInputStream(Paths.get(logFile)), StandardCharsets.UTF_8));
         String line;
         StringBuilder content = new StringBuilder();
         while ((line = br.readLine()) != null) {
@@ -289,7 +291,7 @@ public class GraphFileServiceImpl implements GraphFileService {
             response.setContentType("text/html; charset=UTF-8");
             response.setContentType("application/octet-stream");
             response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode(randomNumbers + demoName, CharsetUtil.UTF_8))));
-            bis = new BufferedInputStream(new FileInputStream(zipPath));
+            bis = new BufferedInputStream(Files.newInputStream(Paths.get(zipPath)));
             //定义byte，长度就是要转成zip文件的byte长度，避免浪费资源
             byte[] buffer = new byte[bis.available()];
             bis.read(buffer);
