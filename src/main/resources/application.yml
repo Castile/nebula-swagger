@@ -12,3 +12,14 @@ path:
   #  uploadFilePath: D:/data/graphFile
   importerPath: /data1/opt
 #  importerPath: D:/data
+
+spring:
+  # 页面配置
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+
+server:
+  port: 8080
+  servlet:
+    context-path: /nebula
