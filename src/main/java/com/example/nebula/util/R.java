@@ -15,7 +15,7 @@ public class R<T> {
     /**
      * 成功
      **/
-    public R success(Object object) {
+    public static R success(Object object) {
         R result = new R();
         result.setCode(ResultCode.SUCCESS.getCode());
         result.setMsg(ResultCode.SUCCESS.getMsg());

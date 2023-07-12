@@ -1,7 +1,7 @@
 nebula:
   userName: root
   password: nebula
-  hostAddresses[0]: 10.0.59.65:9669
+  hostAddresses[0]: 10.0.64.106:9669
   minConnsSize: 5
   maxConnSize: 10
   timeout: 300000
@@ -23,3 +23,26 @@ server:
   port: 8080
   servlet:
     context-path: /nebula
+
+# Sa-Token配置 SaTokenConfig
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: token
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 5400
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: 1800
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: false
+  # 是否从cookie中读取token
+  is-read-cookie: false
+  # 是否从请求体中读取token
+  is-read-body: false
+  # 默认密码
+  password: 123456
