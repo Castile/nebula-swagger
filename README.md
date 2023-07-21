@@ -32,6 +32,12 @@
 ![img_2.png](img_2.png)
 送了两次大礼包了,谢谢
 
+nebula 图数据库相关文章:
+
+- [图文数据库nebula奖励](https://blog.csdn.net/qq_32419139/article/details/125143297)
+- [国产图数据库--Nebula实践](https://blog.csdn.net/qq_32419139/article/details/127203849)
+- [国产图数据库--Nebula备份/恢复](https://blog.csdn.net/qq_32419139/article/details/127221752)
+
 
 
 
