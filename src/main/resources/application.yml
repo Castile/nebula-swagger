@@ -1,16 +1,16 @@
 nebula:
   userName: root
   password: nebula
-  hostAddresses[0]: 10.0.64.106:9669
+  hostAddresses[0]: 192.168.3.7:9669
   minConnsSize: 5
   maxConnSize: 10
   timeout: 300000
   idleTime: 180000
 
 path:
-  uploadFilePath: /opt/project/java/graphFile
+  uploadFilePath: /Users/castile/Documents/Code/nebula/nebula-swagger-demo
   #  uploadFilePath: D:/data/graphFile
-  importerPath: /data1/opt
+  importerPath: /Users/castile/Documents/Code/nebula/nebula-swagger-demo/data
 #  importerPath: D:/data
 
 spring:
@@ -20,7 +20,7 @@ spring:
       matching-strategy: ant_path_matcher
 
 server:
-  port: 8080
+  port: 8081
   servlet:
     context-path: /nebula
 

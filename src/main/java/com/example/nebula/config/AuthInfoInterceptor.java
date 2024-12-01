@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
  * @ClassName: AuthInfoInterceptor
  */
 @Slf4j
-@Component
+//@Component
 public class AuthInfoInterceptor implements HandlerInterceptor {
 
 
-    @Autowired
-    AuthUserService authUserService;
+//    @Autowired
+//    AuthUserService authUserService;
 
     @Value("${sa-token.timeout}")
     private long timeout;// 单位s
