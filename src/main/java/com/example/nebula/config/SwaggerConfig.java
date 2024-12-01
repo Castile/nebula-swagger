@@ -33,10 +33,10 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .description("图谱项目接口文档")
-                .contact(new Contact("castile", "http://xxxx", "1792939443@qq.com"))
+                .description("Nebula图谱项目接口文档")
+                .contact(new Contact("castile", "http://castile.github.io", "zhl396740445@163.com"))
                 .version("v1.1.0")
-                .title("图谱项目 API")
+                .title("Castile Nebula图谱项目 API")
                 .build();
     }
 
